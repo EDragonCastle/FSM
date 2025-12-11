@@ -1,4 +1,5 @@
-﻿
+﻿using UnityEngine;
+
 public class SlideState : ICharaterState
 {
     #region ICharacter Interface
@@ -7,11 +8,12 @@ public class SlideState : ICharaterState
     {
         var animator = state.GetAnimator();
         animator.SetBool("isSliding", true);
-        animator.SetBool("isWalking", true);
-        animator.SetBool("isRunning", true);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isRunning", false);
 
         var clipList = state.GetAnimationClipList();
         state.StartStateCoroutine(state.PoseToIdle(clipList["SLIDE00"], this));
+        state.GetRigidBody().AddForce(state.transform.forward * state.slideForce * 3, ForceMode.VelocityChange);
     }
 
     // Exit 상태에서 나갈 때 실행
@@ -31,6 +33,11 @@ public class SlideState : ICharaterState
     public void ExecuteState(Player state)
     {
         
+    }
+
+    public void FixedUpdateState(Player state)
+    {
+
     }
     #endregion
 }

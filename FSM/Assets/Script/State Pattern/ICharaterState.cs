@@ -8,6 +8,8 @@ public interface ICharaterState
     public void HandleInput(Player state);
     // Update에서 매 프레임 실행한다.
     public void ExecuteState(Player state);
+    // Physics Update에서 매 프레임 실행된다.
+    public void FixedUpdateState(Player state);
 }
 
 // 여기서 Interface Parameter에 관해서 void 형식이 있고 State를 Parameter에 적용하는 방법이 있다.

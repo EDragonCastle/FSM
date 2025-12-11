@@ -11,6 +11,8 @@ public class JumpState : ICharaterState
 
         var clipList = state.GetAnimationClipList();
         state.StartStateCoroutine(state.PoseToIdle(clipList["JUMP00"], this));
+
+        state.GetRigidBody().AddForce(Vector3.up * state.jumpForce, ForceMode.VelocityChange);
     }
 
     // Exit 상태에서 나갈 때 실행
@@ -31,5 +33,11 @@ public class JumpState : ICharaterState
     {
 
     }
+
+    public void FixedUpdateState(Player state)
+    {
+
+    }
+
     #endregion
 }

@@ -21,11 +21,11 @@ public class IdleState : ICharaterState
     public void HandleInput(Player state)
     {
         // Run State
-        if(Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.Z))
+        if((Input.GetAxis("Vertical") != 0.0f || Input.GetAxis("Horizontal") != 0.0f) && Input.GetKey(KeyCode.Z))
         {
             state.TransitionState(new RunState());
         }
-        else if(Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetAxis("Vertical") != 0.0f || Input.GetAxis("Horizontal") != 0.0f)
         {
             state.TransitionState(new WalkState());
         }    
@@ -41,6 +41,11 @@ public class IdleState : ICharaterState
     public void ExecuteState(Player state)
     {
         Debug.Log("Idle ½ÇÇà Áß");
+    }
+
+    public void FixedUpdateState(Player state)
+    {
+
     }
     #endregion
 
